@@ -25,6 +25,7 @@ public class Fitpeo {
 	public  String total_reembusment= "$110700";
 	@Test
 	public void Revenue_Calculator() throws InterruptedException{
+		
 		//Navigate to the Revenue Calculator Page
 		
 		WebElement revenuecalculator = driver.findElement(By.linkText("Revenue Calculator"));
@@ -39,13 +40,13 @@ public class Fitpeo {
 		js.executeScript("arguments[0].scrollIntoView();", Slider1);
 		
 		//Adjust the Slider to Set Value to 820
+		
 		WebElement Slider  = driver.findElement(By.xpath("//*[contains(@class,\"MuiSlider-thumb MuiSlider-thumbSizeMedium MuiSlider-thumbColorPrimary MuiSlider-thumb MuiSlider-thumbSizeMedium MuiSlider-thumbColorPrimary css-sy3s50\")]"));
 		Slider.isDisplayed();
 		js.executeScript("arguments[0].setAttribute('style', 'left: 41.20%')",Slider);
 		
 		Thread.sleep(3000);
 		Slider.click();
-		//String get_slider_value=Slider.getAttribute("value");
 		
 //		Actions moveSlider = new Actions(driver);
 //		moveSlider.moveToElement(Slider).clickAndHold().moveByOffset(107,1).release().perform();
@@ -56,12 +57,14 @@ public class Fitpeo {
 		Thread.sleep(5000);
 		
 		//Update the Text Field to 560 and verify the slider position
+		
 		WebElement Slider_value = driver.findElement(By.xpath("//*[contains(@class,'MuiInputBase-inputSizeSmall')]"));
 		Slider_value.clear();
 		Slider_value.sendKeys("560");
 		Thread.sleep(3000);
 		
 		//Select CPT Codes
+		
 		int temp=0;
 		int count = driver.findElements(By.xpath("//*[@class=\"MuiTypography-root MuiTypography-body1 inter css-1s3unkt\"]")).size();
 		for(int i=1;i<=count;i++) {
@@ -74,6 +77,7 @@ public class Fitpeo {
 		}
 		
 		//Validate Total Recurring Reimbursement
+		
 		String total_Reimbursement =driver.findElement(By.xpath("//*[@class=\"MuiTypography-root MuiTypography-body1 inter css-hocx5c\"]")).getText();
 
 		Assert.assertEquals(total_Reimbursement, "total_reembusment","total_Reimbursement is not as expected amount");
@@ -83,3 +87,4 @@ public class Fitpeo {
 		driver.quit();
 	}
 }
+
